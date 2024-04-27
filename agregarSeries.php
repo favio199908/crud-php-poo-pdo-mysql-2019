@@ -70,7 +70,7 @@ $generos = $consulta->listarGeneros($bd, 'genres');
                 </div>
                 <button type="submit" class="btn btn-primary">Registrar Serie</button>
             </form>
-            <a href="index.php" class="btn btn-danger">Volver</a>
+            <a href="listado_series.php" class="btn btn-danger">Volver</a>
         </div>
     </div>
 

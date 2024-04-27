@@ -25,6 +25,9 @@
             <li class="nav-item">
                 <a class="nav-link text-white d-flex d-flex align-items-center" href="listado_temporadas.php"><ion-icon name="add-circle" ></ion-icon> Ver Listado de temporadas</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-white d-flex d-flex align-items-center" href="listado_autorCodigo.php"><ion-icon name="add-circle" ></ion-icon> Ver Listado de autor</a>
+            </li>
         </ul>
         
     </div>

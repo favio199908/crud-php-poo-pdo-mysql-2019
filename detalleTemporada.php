@@ -1,11 +1,14 @@
 <?php
 require_once('loader.php');
 
-// Obtener el detalle de la serie
-$serie = $consulta->detalleSerie($bd, 'series', 'genres', $_GET['id']);
+// Verificar si se proporciona un ID válido
+if(isset($_GET['id']) && !empty($_GET['id'])) {
+    try {
+        // Obtener el detalle de la serie
+        $serie = $consulta->detalleTemporada($bd, 'seasons', 'series', $_GET['id']);
 
+        // Ahora, mostramos los detalles de la serie en la página
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -32,10 +35,11 @@ $serie = $consulta->detalleSerie($bd, 'series', 'genres', $_GET['id']);
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Título: <?= $serie['title'] ?></li>
-                    <li class="list-group-item">Temporadas: <?= $serie['seasons'] ?></li>
-                    <li class="list-group-item">Episodios: <?= $serie['episodes'] ?></li>
+                    <li class="list-group-item">numero: <?= $serie['number'] ?></li>
+                    
                     <li class="list-group-item">Fecha de lanzamiento: <?= date('d-m-Y', strtotime($serie['release_date'])) ?></li>
-                    <li class="list-group-item">Género: <?= $serie['name'] ?></li>
+                    <li class="list-group-item">Fecha de fin: <?= date('d-m-Y', strtotime($temporada['end_date'])); ?></li>
+                    
                 </ul>
                 
             </div>
@@ -49,3 +53,13 @@ $serie = $consulta->detalleSerie($bd, 'series', 'genres', $_GET['id']);
     <script src="https://kit.fontawesome.com/7968cc1663.js" crossorigin="anonymous"></script>
 </body>
 </html>
+<?php
+    } catch (Exception $e) {
+        // Manejar cualquier error que ocurra durante la obtención del detalle de la serie
+        echo "Error: " . $e->getMessage();
+    }
+} else {
+    // Si no se proporciona un ID válido, redireccionamos a alguna página de error o mostramos un mensaje adecuado
+    echo "ID de serie no válido";
+}
+?>

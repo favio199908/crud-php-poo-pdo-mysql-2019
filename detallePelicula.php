@@ -23,7 +23,7 @@ $pelicula = $consulta->detallePelicula($bd,'movies','genres',$_GET['id']);
     <div class="row mt-5">
         <div class="col-lg-4 offset-lg-4">
             <div class="card w-100">
-                <img class="card-img-top" src="images/logo.jpg" alt="Foto de la pelicula">
+                <img class="card-img-top" src="images/barto.jpeg" alt="Foto de la pelicula">
                 <div class="card-body">
                     <h5 class="card-title text-center"></h5>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam nisi minima nemo expedita distinctio ipsa eum magnam fugiat! Aspernatur, illo.</p>

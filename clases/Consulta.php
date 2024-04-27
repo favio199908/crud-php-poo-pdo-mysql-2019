@@ -1,5 +1,13 @@
 <?php
 class Consulta{
+
+    public function listarAutorCodigo($bd, $table){
+        $sql = "select * from $table";
+        $query = $bd->prepare($sql);
+        $query->execute();
+        $autor = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $autor;
+    }
     //Este método muestra el listatdo de todas las películas
     public function listarPeliculas($bd,$movies){
         $sql = "select * from $movies";
@@ -87,7 +95,7 @@ class Consulta{
         $query->bindValue(':end_date', $serie->getEndDate());
         $query->bindValue(':genre_id', $serie->getGenre());
         $query->execute();
-        header('Location: index.php');
+        header('Location: listado_series.php');
     }
 
     // Método para mostrar el detalle de una serie seleccionada
@@ -153,7 +161,7 @@ class Consulta{
 
     // Método para mostrar el detalle de una temporada seleccionada
     public function detalleTemporada($bd, $table, $series, $id){
-        $sql = "SELECT $table.*, $series.title AS serie_title FROM $table, $series WHERE $table.serie_id = $series.id AND $table.id = $id";
+        $sql = "select $table.*, $series.title as serie_title from $table, $series where $table.serie_id = $series.id and $table.id = $id";
         $query = $bd->prepare($sql);
         $query->execute();
         $temporada = $query->fetch(PDO::FETCH_ASSOC);
@@ -172,10 +180,11 @@ class Consulta{
 
     // Método para borrar una temporada
     public function borrarTemporada($bd, $table, $id){
-        $sql = "DELETE FROM $table WHERE id = :id";
+        $sql = "delete from $table where id = :id";
         $query = $bd->prepare($sql);
         $query->bindValue(':id', $id);
         $query->execute();
+        header('Location: listado_temporadas.php');
     }
 
     // Método para actualizar una temporada
